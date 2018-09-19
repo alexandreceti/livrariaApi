@@ -1,0 +1,11 @@
+c:\Users\416459\LivrariaAPI\bin\Debug\netcoreapp2.0\LivrariaAPI.deps.json
+c:\Users\416459\LivrariaAPI\bin\Debug\netcoreapp2.0\LivrariaAPI.runtimeconfig.json
+c:\Users\416459\LivrariaAPI\bin\Debug\netcoreapp2.0\LivrariaAPI.runtimeconfig.dev.json
+c:\Users\416459\LivrariaAPI\bin\Debug\netcoreapp2.0\LivrariaAPI.dll
+c:\Users\416459\LivrariaAPI\bin\Debug\netcoreapp2.0\LivrariaAPI.pdb
+c:\Users\416459\LivrariaAPI\obj\Debug\netcoreapp2.0\LivrariaAPI.csprojResolveAssemblyReference.cache
+c:\Users\416459\LivrariaAPI\obj\Debug\netcoreapp2.0\LivrariaAPI.csproj.CoreCompileInputs.cache
+c:\Users\416459\LivrariaAPI\obj\Debug\netcoreapp2.0\LivrariaAPI.AssemblyInfoInputs.cache
+c:\Users\416459\LivrariaAPI\obj\Debug\netcoreapp2.0\LivrariaAPI.AssemblyInfo.cs
+c:\Users\416459\LivrariaAPI\obj\Debug\netcoreapp2.0\LivrariaAPI.dll
+c:\Users\416459\LivrariaAPI\obj\Debug\netcoreapp2.0\LivrariaAPI.pdb
