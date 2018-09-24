@@ -16,35 +16,103 @@ namespace LivrariaAPI.Controllers
         public IEnumerable<LivroModel> Get([FromQuery]string titulo, int idEditora, DateTime anoLancamento)
         {
             List<LivroModel> listaRetorno = new List<LivroModel>();
-            
-            if (titulo == "titulo1")
-            {
-                LivroModel livro1 = new LivroModel();
-                livro1.Isbn = 123456;
-                livro1.IdEditora = 1;
-                livro1.AnoLancamento = DateTime.Now;
-                livro1.Titulo = "titulo1";
 
-                listaRetorno.Add(livro1);
+            AutorModel autorMock = new AutorModel()
+            {
+                IdAutor = 1,
+                Nome = "Homero",
+                SobreNome = string.Empty
+            };
+
+            EditoraModel editoraMock = new EditoraModel()
+            {
+                IdEditora = 1,
+                Nome = "Abril"
+            };
+
+            LivroModel livroMock1 = new LivroModel()
+            {
+                Isbn = 123456,
+                AnoLancamento = DateTime.Now,
+                Editora = editoraMock,
+                Titulo = "Iliada"
+            };
+
+            LivroModel livroMock = new LivroModel()
+            {
+                Isbn = 654321,
+                Editora = editoraMock,
+                AnoLancamento = DateTime.Now,
+                Titulo = "Odisseia"
+            };
+
+            livroMock1.ListaAutores.Add(autorMock);
+            livroMock.ListaAutores.Add(autorMock);
+
+            if (string.IsNullOrEmpty(titulo))
+            {
+                listaRetorno.Add(livroMock);
+                listaRetorno.Add(livroMock1);
             }
+            else if (titulo == "Iliada")
+                listaRetorno.Add(livroMock1);
+
             return listaRetorno;
         }
 
         // GET api/values/5
         [HttpGet("{isbn}")]
         [ProducesResponseType(200)]
-        public string Get(int isbn)
+        public LivroModel Get(int isbn)
         {
-            return "Isbn: 1, Titulo: api, IdEditora: 1, [ { idAutor: 1, Nome: nomeAutor, Sobrenome: sobrenomeAutor } ]";
+            EditoraModel editoraMock = new EditoraModel()
+            {
+                IdEditora = 1,
+                Nome = "Abril"
+            };
+
+            LivroModel livroMock = new LivroModel()
+            {
+                Isbn = 654321,
+                Editora = editoraMock,
+                AnoLancamento = DateTime.Now,
+                Titulo = "Odisseia"
+            };
+
+            AutorModel autorMock = new AutorModel()
+            {
+                IdAutor = 1,
+                Nome = "Homero",
+                SobreNome = string.Empty
+            };
+
+            livroMock.ListaAutores.Add(autorMock);
+
+            if (isbn == 654321)
+                return livroMock;
+            else
+                return null;
         }
 
         // GET api/values/5
         [HttpGet("{Isbn}/Autores")]
         [ProducesResponseType(200)]
-        public IEnumerable<string> GetAutores(int Isbn)
+        public IEnumerable<AutorModel> GetAutores(int isbn)
         {
-            return new string[] { "idAutor: 1, Nome: autor1, Sobrenome: Sobrenome1", "idAutor: 2, Nome: autor2, Sobrenome: Sobrenome2" };
-            // TODO: devolver uri de detalhes dos autores
+            List<AutorModel> listaRetorno = new List<AutorModel>();
+
+            if (isbn == 654321 || isbn == 123456)
+            {
+                AutorModel autorMock = new AutorModel()
+                {
+                    IdAutor = 1,
+                    Nome = "Homero",
+                    SobreNome = string.Empty
+                };
+
+                listaRetorno.Add(autorMock);
+            }
+            return listaRetorno;
         }
 
         // POST api/values

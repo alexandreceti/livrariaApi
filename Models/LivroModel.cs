@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Models;
 
 namespace LivrariaAPI.Models
 {
@@ -8,12 +7,14 @@ namespace LivrariaAPI.Models
     {
         public int Isbn { get;set;  }
         public string Titulo { get;set;  }
-        public int IdEditora { get;set;  }
+        public EditoraModel Editora { get;set;  }
         public DateTime AnoLancamento { get;set; }
 
-        public IEnumerable<AutoresModel> listaAutores { get;set; }
+        public List<AutorModel> ListaAutores { get;set; }
 
         public LivroModel()
-        {}
+        {
+            ListaAutores = new List<AutorModel>();
+        }
     }
 }

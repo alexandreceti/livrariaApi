@@ -9,3 +9,14 @@ c:\Users\416459\LivrariaAPI\obj\Debug\netcoreapp2.0\LivrariaAPI.AssemblyInfoInpu
 c:\Users\416459\LivrariaAPI\obj\Debug\netcoreapp2.0\LivrariaAPI.AssemblyInfo.cs
 c:\Users\416459\LivrariaAPI\obj\Debug\netcoreapp2.0\LivrariaAPI.dll
 c:\Users\416459\LivrariaAPI\obj\Debug\netcoreapp2.0\LivrariaAPI.pdb
+C:\Git\LivrariaAPI\bin\Debug\netcoreapp2.0\LivrariaAPI.deps.json
+C:\Git\LivrariaAPI\bin\Debug\netcoreapp2.0\LivrariaAPI.runtimeconfig.json
+C:\Git\LivrariaAPI\bin\Debug\netcoreapp2.0\LivrariaAPI.runtimeconfig.dev.json
+C:\Git\LivrariaAPI\bin\Debug\netcoreapp2.0\LivrariaAPI.dll
+C:\Git\LivrariaAPI\bin\Debug\netcoreapp2.0\LivrariaAPI.pdb
+C:\Git\LivrariaAPI\obj\Debug\netcoreapp2.0\LivrariaAPI.csprojAssemblyReference.cache
+C:\Git\LivrariaAPI\obj\Debug\netcoreapp2.0\LivrariaAPI.csproj.CoreCompileInputs.cache
+C:\Git\LivrariaAPI\obj\Debug\netcoreapp2.0\LivrariaAPI.AssemblyInfoInputs.cache
+C:\Git\LivrariaAPI\obj\Debug\netcoreapp2.0\LivrariaAPI.AssemblyInfo.cs
+C:\Git\LivrariaAPI\obj\Debug\netcoreapp2.0\LivrariaAPI.dll
+C:\Git\LivrariaAPI\obj\Debug\netcoreapp2.0\LivrariaAPI.pdb
