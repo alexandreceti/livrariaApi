@@ -40,6 +40,11 @@ namespace LivrariaAPI.Controllers
             else if (nome == "Homero")
                 result.Autores.Add(autorMock);
 
+            if (result.Autores.Count == 0)
+                result.StatusCode = 204;
+            else
+                result.StatusCode = 200;
+
             return result;
         }
 
@@ -60,7 +65,14 @@ namespace LivrariaAPI.Controllers
                 };
                 
                 result.Autores.Add(autorMock);
+                result.StatusCode = 200;
             }
+            
+            if (result.Autores.Count == 0)
+                result.StatusCode = 204;
+            else
+                result.StatusCode = 200;
+
             return result;
         }
 
@@ -108,6 +120,12 @@ namespace LivrariaAPI.Controllers
                 result.Livros.Add(livroMock1);
                 result.Livros.Add(livroMock);
             }
+
+            if (result.Livros.Count == 0)
+                result.StatusCode = 204;
+            else
+                result.StatusCode = 200;
+
             return result;
         }
 

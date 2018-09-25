@@ -38,6 +38,11 @@ namespace LivrariaAPI.Controllers
             else if (nome == "Abril")
                 result.Editoras.Add(editoraMock);
 
+            if (result.Editoras.Count == 0)
+                result.StatusCode = 204;
+            else
+                result.StatusCode = 200;
+
             return result;
         }
 
@@ -60,6 +65,11 @@ namespace LivrariaAPI.Controllers
                     IdEditora = 2,
                     Nome = "Irmaos Vitalle"
                 });
+
+            if (result.Editoras.Count == 0)
+                result.StatusCode = 204;
+            else
+                result.StatusCode = 200;
 
             return result;
         }
@@ -106,6 +116,12 @@ namespace LivrariaAPI.Controllers
                 result.Livros.Add(livroMock1);
 
             }
+
+            if (result.Livros.Count == 0)
+                result.StatusCode = 204;
+            else
+                result.StatusCode = 200;
+
             return result;
         }
 
@@ -135,6 +151,12 @@ namespace LivrariaAPI.Controllers
                 result.Autores.Add(autorMock);
                 result.Autores.Add(autorMock1);
             }
+
+            if (result.Autores.Count == 0)
+                result.StatusCode = 204;
+            else
+                result.StatusCode = 200;
+
             return result;
         }
 

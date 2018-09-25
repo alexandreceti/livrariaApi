@@ -60,6 +60,11 @@ namespace LivrariaAPI.Controllers
             else if (titulo == "Odisseia")
                 result.Livros.Add(livroMock);
 
+            if (result.Livros.Count == 0)
+                result.StatusCode = 204;
+            else
+                result.StatusCode = 200;
+
             return result;
         }
 
@@ -96,6 +101,11 @@ namespace LivrariaAPI.Controllers
             if (isbn == 654321)
                 result.Livros.Add(livroMock);;
 
+            if (result.Livros.Count == 0)
+                result.StatusCode = 204;
+            else
+                result.StatusCode = 200;
+
             return result;
         }
 
@@ -117,6 +127,12 @@ namespace LivrariaAPI.Controllers
 
                 result.Autores.Add(autorMock);
             }
+
+            if (result.Autores.Count == 0)
+                result.StatusCode = 204;
+            else
+                result.StatusCode = 200;
+
             return result;
         }
 
@@ -138,6 +154,12 @@ namespace LivrariaAPI.Controllers
 
                 result.Comentarios.Add(comentario);
             }
+
+            if (result.Comentarios.Count == 0)
+                result.StatusCode = 204;
+            else
+                result.StatusCode = 200;
+
             return result;
         }
 
