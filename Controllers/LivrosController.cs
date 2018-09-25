@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using LivrariaAPI.Models;
+using LivrariaAPI.DTOModels;
 
 namespace LivrariaAPI.Controllers
 {
@@ -13,9 +14,9 @@ namespace LivrariaAPI.Controllers
         // GET api/values
         [HttpGet]
         [ProducesResponseType(200)]
-        public IEnumerable<LivroModel> Get([FromQuery]string titulo, int idEditora, DateTime anoLancamento)
+        public LivrosGet Get([FromQuery]int limit, int offset, string titulo, int idEditora, DateTime anoLancamento)
         {
-            List<LivroModel> listaRetorno = new List<LivroModel>();
+            LivrosGet result = new LivrosGet(limit, offset);
 
             AutorModel autorMock = new AutorModel()
             {
@@ -51,20 +52,24 @@ namespace LivrariaAPI.Controllers
 
             if (string.IsNullOrEmpty(titulo))
             {
-                listaRetorno.Add(livroMock);
-                listaRetorno.Add(livroMock1);
+                result.Livros.Add(livroMock);
+                result.Livros.Add(livroMock1);
             }
             else if (titulo == "Iliada")
-                listaRetorno.Add(livroMock1);
+                result.Livros.Add(livroMock1);
+            else if (titulo == "Odisseia")
+                result.Livros.Add(livroMock);
 
-            return listaRetorno;
+            return result;
         }
 
         // GET api/values/5
         [HttpGet("{isbn}")]
         [ProducesResponseType(200)]
-        public LivroModel Get(int isbn)
+        public LivrosGet Get(int isbn)
         {
+            LivrosGet result = new LivrosGet();
+
             EditoraModel editoraMock = new EditoraModel()
             {
                 IdEditora = 1,
@@ -89,17 +94,17 @@ namespace LivrariaAPI.Controllers
             livroMock.ListaAutores.Add(autorMock);
 
             if (isbn == 654321)
-                return livroMock;
-            else
-                return null;
+                result.Livros.Add(livroMock);;
+
+            return result;
         }
 
         // GET api/values/5
-        [HttpGet("{Isbn}/Autores")]
+        [HttpGet("{isbn}/Autores")]
         [ProducesResponseType(200)]
-        public IEnumerable<AutorModel> GetAutores(int isbn)
+        public AutoresGet GetAutores(int isbn)
         {
-            List<AutorModel> listaRetorno = new List<AutorModel>();
+            AutoresGet result = new AutoresGet();
 
             if (isbn == 654321 || isbn == 123456)
             {
@@ -110,16 +115,54 @@ namespace LivrariaAPI.Controllers
                     SobreNome = string.Empty
                 };
 
-                listaRetorno.Add(autorMock);
+                result.Autores.Add(autorMock);
             }
-            return listaRetorno;
+            return result;
+        }
+
+        [HttpGet("{isbn}/Comentarios/")]
+        public ComentariosGet ComentarioGet(int isbn,[FromQuery] int limit, int offset)
+        {
+            ComentariosGet result = new ComentariosGet(limit, offset);
+
+            if (isbn == 123456)
+            {
+                ComentarioModel comentario = new ComentarioModel()
+                {
+                    IdComentario = 1,
+                    IdLivro = 123456,
+                    Usuario = "Henrique",
+                    Texto = "É um livro muito bom, porem de leitura complexa.",
+                    Nota = 9
+                };
+
+                result.Comentarios.Add(comentario);
+            }
+            return result;
+        }
+
+        [HttpPost("{isbn}/Comentario")]
+        [ProducesResponseType(200)]
+        public int ComentarioPost(ComentarioModel comentario)
+        {
+            if (comentario != null)
+                return 200;
+            return 204;
         }
 
         // POST api/values
         [HttpPost]
         [ProducesResponseType(202)]
-        public void Post([FromBody]string value)
+        public int Post(LivrosPost livrosPost)
         {
+            int linhasAfetadas = 0;
+
+            foreach (LivroModel livro in livrosPost.Livros)
+            {
+                linhasAfetadas++;
+            }
+
+            return linhasAfetadas;
         }
 
         // PUT api/values/5

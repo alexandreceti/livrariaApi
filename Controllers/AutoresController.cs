@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using LivrariaAPI.Models;
+using LivrariaAPI.DTOModels;
 
 namespace LivrariaAPI.Controllers
 {
@@ -13,9 +14,9 @@ namespace LivrariaAPI.Controllers
         // GET api/values
         [HttpGet]
         [ProducesResponseType(200)]
-        public IEnumerable<AutorModel> Get([FromQuery]string nome, string sobrenome)
+        public AutoresGet Get([FromQuery]string nome, string sobrenome)
         {
-            List<AutorModel> listaRetorno = new List<AutorModel>();
+            AutoresGet result = new AutoresGet();
 
             AutorModel autorMock = new AutorModel()
             {
@@ -30,22 +31,25 @@ namespace LivrariaAPI.Controllers
                 Nome = "Paulo",
                 SobreNome = "Coelho"
             };
+
             if (string.IsNullOrEmpty(nome))
             {
-                listaRetorno.Add(autorMock);
-                listaRetorno.Add(autorMock1);
+                result.Autores.Add(autorMock);
+                result.Autores.Add(autorMock1);
             }
             else if (nome == "Homero")
-                listaRetorno.Add(autorMock);
+                result.Autores.Add(autorMock);
 
-            return listaRetorno;
+            return result;
         }
 
         // GET api/values/5
         [HttpGet("{idAutor}")]
         [ProducesResponseType(200)]
-        public AutorModel Get(int idAutor)
+        public AutoresGet Get(int idAutor)
         {
+            AutoresGet result = new AutoresGet();
+
             if (idAutor == 1)
             {
                 AutorModel autorMock = new AutorModel()
@@ -54,17 +58,18 @@ namespace LivrariaAPI.Controllers
                     Nome = "Homero",
                     SobreNome = string.Empty
                 };
-                return autorMock;
+                
+                result.Autores.Add(autorMock);
             }
-            return null;
+            return result;
         }
 
         // GET api/values/5
         [HttpGet("{idAutor}/Livros")]
         [ProducesResponseType(200)]
-        public IEnumerable<LivroModel> GetLivros(int idAutor)
+        public LivrosGet GetLivros(int idAutor)
         {
-            List<LivroModel> listaRetorno = new List<LivroModel>();
+            LivrosGet result = new LivrosGet();
 
             EditoraModel editoraMock = new EditoraModel()
             {
@@ -100,10 +105,10 @@ namespace LivrariaAPI.Controllers
                 livroMock.ListaAutores.Add(autorMock);
                 livroMock1.ListaAutores.Add(autorMock);
 
-                listaRetorno.Add(livroMock1);
-                listaRetorno.Add(livroMock);
+                result.Livros.Add(livroMock1);
+                result.Livros.Add(livroMock);
             }
-            return listaRetorno;
+            return result;
         }
 
         // POST api/values

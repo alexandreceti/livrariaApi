@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using LivrariaAPI.Models;
+using LivrariaAPI.DTOModels;
 
 namespace LivrariaAPI.Controllers
 {
@@ -13,9 +14,9 @@ namespace LivrariaAPI.Controllers
         // GET api/values
         [HttpGet]
         [ProducesResponseType(200)]
-        public IEnumerable<EditoraModel> Get([FromQuery]string nome)
+        public EditorasGet Get([FromQuery]string nome, int limit, int offset)
         {
-            List<EditoraModel> listaRetorno = new List<EditoraModel>();
+            EditorasGet result = new EditorasGet(limit, offset);
 
             EditoraModel editoraMock = new EditoraModel()
             {
@@ -31,42 +32,44 @@ namespace LivrariaAPI.Controllers
 
             if (string.IsNullOrEmpty(nome))
             {
-                listaRetorno.Add(editoraMock);
-                listaRetorno.Add(editoraMock1);
+                result.Editoras.Add(editoraMock);
+                result.Editoras.Add(editoraMock1);
             }
             else if (nome == "Abril")
-                listaRetorno.Add(editoraMock);
+                result.Editoras.Add(editoraMock);
 
-            return listaRetorno;
+            return result;
         }
 
         // GET api/values/5
         [HttpGet("{idEditora}")]
         [ProducesResponseType(200)]
-        public EditoraModel Get(int idEditora)
+        public EditorasGet Get(int idEditora)
         {
+            EditorasGet result = new EditorasGet();
+
             if (idEditora == 1)
-                return new EditoraModel()
+                result.Editoras.Add(new EditoraModel()
                 {
                     IdEditora = 1,
                     Nome = "Abril"
-                };
+                });
             else if (idEditora == 2)
-                return new EditoraModel()
+                result.Editoras.Add(new EditoraModel()
                 {
                     IdEditora = 2,
                     Nome = "Irmaos Vitalle"
-                };
-            else
-                return null;
+                });
+
+            return result;
         }
 
         // GET api/values/5
         [HttpGet("{idEditora}/Livros")]
         [ProducesResponseType(200)]
-        public IEnumerable<LivroModel> GetLivros(int idEditora)
+        public LivrosGet GetLivros(int idEditora, int limit, int offset)
         {
-            List<LivroModel> listaRetorno = new List<LivroModel>();
+            LivrosGet result = new LivrosGet(limit, offset);
 
             if (idEditora == 1)
             {
@@ -99,19 +102,19 @@ namespace LivrariaAPI.Controllers
                     Titulo = "Odisseia"
                 };
 
-                listaRetorno.Add(livroMock);
-                listaRetorno.Add(livroMock1);
+                result.Livros.Add(livroMock);
+                result.Livros.Add(livroMock1);
 
             }
-            return listaRetorno;
+            return result;
         }
 
         // GET api/values/5
         [HttpGet("{idEditora}/Autores")]
         [ProducesResponseType(200)]
-        public IEnumerable<AutorModel> GetAutores(int idEditora)
+        public AutoresGet GetAutores(int idEditora)
         {
-            List<AutorModel> listaRetorno = new List<AutorModel>();
+            AutoresGet result = new AutoresGet();
 
             AutorModel autorMock = new AutorModel()
             {
@@ -129,11 +132,10 @@ namespace LivrariaAPI.Controllers
 
             if (idEditora == 1)
             {
-                listaRetorno.Add(autorMock);
-                listaRetorno.Add(autorMock1);
+                result.Autores.Add(autorMock);
+                result.Autores.Add(autorMock1);
             }
-            return listaRetorno;
-
+            return result;
         }
 
         // POST api/values
