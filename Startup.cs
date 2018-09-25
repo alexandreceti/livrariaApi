@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace LivrariaAPI
 {
@@ -24,6 +25,12 @@ namespace LivrariaAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            // Register the Swagger generator, defining 1 or more swagger documentos
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "LivrariaAPI", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,6 +40,12 @@ namespace LivrariaAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => 
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "LivrariaAPI-v1");
+            });
 
             app.UseMvc();
         }
