@@ -14,23 +14,23 @@ namespace LivrariaAPI.Controllers
         [ProducesResponseType(200)]
         public IEnumerable<string> Get([FromQuery]string nome, int sobrenome)
         {
-            return new string[] { "idAutor: 1, nome: titulo1, sobreNome: 1" };
+            return new string[] { "idPedido: 1, nome: titulo1, sobreNome: 1" };
         }
 
         // GET api/values/5
-        [HttpGet("{idAutor}")]
+        [HttpGet("{idPedido}")]
         [ProducesResponseType(200)]
-        public string Get(int idAutor)
+        public string Get(int idPedido)
         {
-            return "idAutor: 1, nome: titulo1, sobreNome: 1";
+            return "idPedido: 1, nome: titulo1, sobreNome: 1";
         }
 
         // GET api/values/5
-        [HttpGet("{idAutor}/Livros")]
+        [HttpGet("{idPedido}/Livros")]
         [ProducesResponseType(200)]
-        public IEnumerable<string> GetLivros(int idAutor)
+        public IEnumerable<string> GetLivros(int idPedido)
         {
-            return new string[] { "Isbn: 1, Titulo: api, IdEditora: 1, [ { idAutor: 1, Nome: nomeAutor, Sobrenome: sobrenomeAutor } ]" };
+            return new string[] { "Isbn: 1, Titulo: api, IdEditora: 1, [ { idPedido: 1, Nome: nomeAutor, Sobrenome: sobrenomeAutor } ]" };
             // TODO: devolver uri de detalhes dos autores
         }
 
@@ -42,17 +42,17 @@ namespace LivrariaAPI.Controllers
         }
 
         // PUT api/values/5
-        [HttpPut("{idAutor}")]
+        [HttpPut("{idPedido}")]
         [ProducesResponseType(202)]
-        public string Put(int idAutor, [FromBody]string value)
+        public string Put(int idPedido, [FromBody]string value)
         {
-            return "idAutor: 1, nome: teste, sobreNome: 4";
+            return "idPedido: 1, nome: teste, sobreNome: 4";
         }
 
         // DELETE api/values/5
-        [HttpDelete("{idAutor}")]
+        [HttpDelete("{idPedido}")]
         [ProducesResponseType(200)]
-        public void Delete(int idAutor)
+        public void Delete(int idPedido)
         {
         }
     }
